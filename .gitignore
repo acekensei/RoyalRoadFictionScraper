@@ -1,0 +1,16 @@
+# Python internals
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Downloaded/Generated Content
+*.epub
+*.mp3
+# Be careful with txt if you have config files, but for this scraper:
+*.txt
+!requirements.txt
+!list_*.txt
