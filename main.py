@@ -58,8 +58,8 @@ def download_chapters(fiction):
                 if chapter_content_div:
                     p_tags = chapter_content_div.find_all("p")
 
-                    # Combine text from all <p> tags
-                    combined_text = "\n".join([p.get_text() for p in p_tags])
+                    # Combine all <p> tags, preserving inner HTML (bold, italics, etc.)
+                    combined_content = "".join([str(p) for p in p_tags])
 
                     # Create a new EPUB book for this chapter
                     book = epub.EpubBook()
@@ -71,7 +71,7 @@ def download_chapters(fiction):
 
                     # Create the chapter content
                     c1 = epub.EpubHtml(title=chapter_title, file_name=f"{chapter_title}.xhtml", lang="en")
-                    c1.content = f"<h1>{chapter_title}</h1><p>{combined_text.replace('\n', '<br/>')}</p>"
+                    c1.content = f"<h1>{chapter_title}</h1>{combined_content}"
 
                     book.add_item(c1)
 
